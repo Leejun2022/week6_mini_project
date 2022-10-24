@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.User, {
+        foreignKey: 'userKey',
+        targetKey: 'userKey',
+      });
+      this.hasMany(models.Comments, {
+        foreignKey: 'postId',
+        sourceKey: 'postId',
+      });
     }
   }
 
@@ -19,6 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       required: true,
+    },
+    userKey:{
+      type: DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "userKey",
+        },
     },
     title: {
       type: DataTypes.STRING,

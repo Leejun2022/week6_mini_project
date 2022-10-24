@@ -9,9 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      userKey: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "userKey",
+        },
+        allowNull: false,
+        onDelete: "cascade",
+      },
       commentId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Comments",
+          key: "CommentId",
+        },
         allowNull: false,
+        onDelete: "cascade",
       },
       comment: {
         type: Sequelize.STRING,

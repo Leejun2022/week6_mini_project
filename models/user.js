@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.hasMany(models.Comment, {
-      //   foreignKey: "userKey",
-      //   sourceKey: "userKey",
-      // });
-      // this.hasMany(models.Post, {
-      //   foreignKey: "userKey",
-      //   sourceKey: "userKey",
-      // });
+      this.hasMany(models.Comments, {
+        foreignKey: "userKey",
+        sourceKey: "userKey",
+      });
+      this.hasMany(models.Posts, {
+        foreignKey: "userKey",
+        sourceKey: "userKey",
+      });
       // this.hasMany(models.Like, {
       //   foreignKey: "userKey",
       //   sourceKey: "userKey",
