@@ -15,11 +15,12 @@ class RecommentController {
   // 대댓글 생성 API
   createRecomment = async (req, res) => {
     const { commentId } = req.params;
-    const { comment } = req.body;
-    const { nickname } = res.locals.user;
+    const { recomment } = req.body;
+    const { nickname, userKey } = res.locals.user;
     const createRecommentData = await this.recommentController.createRecomment(
       commentId,
-      comment,
+      recomment,
+      userKey,
       nickname
     );
     res.status(200).json({ data: createRecommentData });
@@ -28,11 +29,14 @@ class RecommentController {
   // 대댓글 수정 API
   updateRecomment = async (req, res) => {
     const { recommentId } = req.params;
-    const { comment } = req.body;
+    const { recomment } = req.body;
+    const { nickname, userKey } = res.locals.user;
 
     const updateRecomment = await this.recommentController.updateRecomment(
       recommentId,
-      comment
+      recomment,
+      nickname,
+      userKey
     );
     res.status(200).json({ message: "댓글을 수정했습니다." });
   };
@@ -40,10 +44,11 @@ class RecommentController {
   //대댓글 삭제 API
   deleteRecomment = async (req, res) => {
     const { recommentId } = req.params;
-    const { nickname } = res.locals.user;
+    const { nickname, userKey } = res.locals.user;
     const deleteRecomment = await this.recommentController.deleteRecomment(
       recommentId,
-      nickname
+      nickname,
+      userKey
     );
     res.status(200).json({ message: "댓글을 삭제했습니다." });
   };

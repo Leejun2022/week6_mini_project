@@ -14,26 +14,27 @@ class RecommentRepository {
     return recomments;
   };
 
-  createRecomment = async (commentId, comment, nickname) => {
+  createRecomment = async (commentId, recomment, userKey, nickname) => {
     const createRecommentData = await Recomments.create({
       commentId,
-      comment,
+      recomment,
+      userKey,
       nickname,
     });
 
     return createRecommentData;
   };
-  updateRecomment = async (recommentId, comment, nickname) => {
+  updateRecomment = async (recommentId, recomment, nickname, userKey) => {
     const updateRecommentData = await Recomments.update(
-      { comment: comment },
-      { where: { recommentId, nickname } }
+      { comment: recomment },
+      { where: { recommentId, nickname, userKey } }
     );
     return updateRecommentData;
   };
 
-  deleteReomment = async (recommentId, nickname) => {
+  deleteReomment = async (recommentId, nickname, userKey) => {
     const deleteRecommentData = await Recomments.destroy({
-      where: { recommentId, nickname },
+      where: { recommentId, nickname, userKey },
     });
     return deleteRecommentData;
   };

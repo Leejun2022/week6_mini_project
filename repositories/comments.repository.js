@@ -15,10 +15,11 @@ class CommentRepository {
     return comments;
   };
 
-  createComment = async (postId, comment, nickname) => {
+  createComment = async (postId, comment, userKey, nickname) => {
     const createCommentData = await Comments.create({
       postId,
       comment,
+      userKey,
       nickname,
     });
 

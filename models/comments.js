@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "postId",
       });
       this.hasMany(models.Recomments, {
-        foreignKey: 'commentId',
-        sourceKey: 'commentId',
+        foreignKey: "commentId",
+        sourceKey: "commentId",
       });
     }
   }
@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
           key: "userKey",
         },
       },
-      postId: { 
-        type: DataTypes.INTEGER, 
+      postId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: "Users",

@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "commentId",
         targetKey: "commentId",
       });
+      this.belongsTo(models.Recomments, {
+        foreignKey: "recommentId",
+        targetKey: "recommentId",
+      });
     }
   }
   Recomments.init(
@@ -23,16 +27,23 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      commentId: { 
-        type: DataTypes.INTEGER, 
+      userKey: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "userKey",
+        },
+      },
+      commentId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: "Comments",
           key: "CommentId",
         },
-       },
-      comment: { type: DataTypes.STRING, unique: true, allowNull: false },
-      nickame: { type: DataTypes.STRING, unique: true, allowNull: false },
+      },
+      recomment: { type: DataTypes.STRING, unique: true, allowNull: false },
+      nickname: { type: DataTypes.STRING, unique: true, allowNull: false },
     },
     {
       sequelize,
