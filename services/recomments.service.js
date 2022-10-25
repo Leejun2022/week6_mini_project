@@ -23,10 +23,9 @@ class RecommentService {
     };
   };
 
-  updateRecomment = async (recommentId, comment,nickname) => {
+  updateRecomment = async (recommentId, nickname) => {
     const updateRecommentData = await this.recommentservice.updateRecomment(
       recommentId,
-      comment,
       nickname
     );
     return updateRecommentData;

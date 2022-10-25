@@ -29,12 +29,10 @@ class RecommentController {
   updateRecomment = async (req, res) => {
     const { recommentId } = req.params;
     const { comment } = req.body;
-    const {nickname} = req.locals.user
 
     const updateRecomment = await this.recommentController.updateRecomment(
       recommentId,
-      comment,
-      nickname
+      comment
     );
     res.status(200).json({ message: "댓글을 수정했습니다." });
   };

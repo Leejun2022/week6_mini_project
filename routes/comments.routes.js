@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middlewares/auth-middleware"); //jwt미들웨어 추후 수정요함
+//const authMiddleware = require(""); //jwt미들웨어 추후 수정요함
+const authMiddleware = require('../middlewares/auth-middleware')
 
 const CommentsController = require("../controllers/comments.controller");
 const commentsController = new CommentsController();
