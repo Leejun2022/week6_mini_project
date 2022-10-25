@@ -33,21 +33,22 @@ module.exports = (sequelize, DataTypes) => {
       },
       userKey: {
         type: DataTypes.INTEGER,
-        references: {
+         allowNull: false,
+         references: {
           model: "Users",
           key: "userKey",
         },
       },
       postId: { 
-        type: DataTypes.INTEGER, 
-        allowNull: false,
-        references: {
-          model: "Users",
-          key: "userKey",
+        type: DataTypes.INTEGER,
+         allowNull: false,
+         references: {
+          model: "Posts",
+          key: "postId",
         },
-      },
+         },
       comment: { type: DataTypes.STRING, unique: true, allowNull: false },
-      nickname: { type: DataTypes.STRING, unique: true, allowNull: false },
+      nickame: { type: DataTypes.STRING, unique: true, allowNull: false },
     },
     {
       sequelize,

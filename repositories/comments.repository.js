@@ -25,10 +25,10 @@ class CommentRepository {
     return createCommentData;
   };
 
-  updateComment = async (commentId, comment) => {
+  updateComment = async (commentId, comment, nickname) => {
     const updateCommentData = await Comments.update(
       { comment: comment },
-      { where: { commentId } }
+      { where: { commentId, nickname } }
     );
     return updateCommentData;
   };

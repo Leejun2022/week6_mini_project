@@ -26,6 +26,7 @@ class PostService {
 
   findPostById = async (postId) => {
     const findPost = await this.postRepository.findPostById(postId);
+
     // console.log(findPost)
     const result = {
       postId: findPost.postId,
@@ -64,11 +65,8 @@ class PostService {
     const findPost = await this.postRepository.findPostById(postId);
     console.log(findPost)
     if (!findPost) throw new Error("Post doesn't exist");
-
     await this.postRepository.updatePost(postId, title, content);
-
     const updatePost = await this.postRepository.findPostById(postId);
-
     return {
       postId: updatePost.postId,
       nickname: updatePost.nickname,
@@ -84,7 +82,6 @@ class PostService {
     if (!findPost) throw new Error("Post doesn't exist");
 
     await this.postRepository.deletePost(postId);
-
     return {
       postId: findPost.postId,
       nickname: findPost.nickname,
@@ -97,3 +94,4 @@ class PostService {
 }
 
 module.exports = PostService;
+

@@ -8,10 +8,10 @@ class CommentService {
     return allComment;
   };
 
-  createComment = async (postId, comment, nickname) => {
+  createComment = async (postId, commentId, nickname) => {
     const createCommentData = await this.commentRepository.createComment(
       postId,
-      comment,
+      commentId,
       nickname
     );
     return {
@@ -21,10 +21,10 @@ class CommentService {
     };
   };
 
-  updateComment = async (commentId, comment) => {
+  updateComment = async (commentId, nickname) => {
     const updateCommentData = await this.commentRepository.updateComment(
       commentId,
-      comment
+      nickname
     );
     return updateCommentData;
   };

@@ -6,9 +6,18 @@ const RecommentController = require("../controllers/recomments.controller");
 const recommentController = new RecommentController();
 
 router.get("/:commentId", recommentController.getRecomment); //해당 게시물 대댓글 전체조회
-router.post("/:commentId", recommentController.createRecomment); //대댓글 생성
-router.put("/:commentId/:recommentId", recommentController.updateRecomment); //대댓글수정
-router.delete("/:commentId/:recommentId", recommentController.deleteRecomment); //대댓글삭제
+
+router.post("/:commentId", authMiddleware, recommentController.createRecomment); //대댓글 생성
+router.put(
+  "/:commentId/:recommentId",
+  authMiddleware,
+  recommentController.updateRecomment
+); //대댓글수정
+router.delete(
+  "/:commentId/:recommentId",
+  authMiddleware,
+  recommentController.deleteRecomment
+); //대댓글삭제
 
 module.exports = router;
 
