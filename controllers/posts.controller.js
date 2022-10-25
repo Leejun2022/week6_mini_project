@@ -19,9 +19,11 @@ class PostsController {
   };
 
   createPost = async (req, res, next) => {
-    const { nickname, userKey } = res.locals.user
+
+    const { nickname, userKey } = res.locals.user;
 
     const { title, content } = req.body;
+
 
     // 서비스 계층에 구현된 createPost 로직을 실행합니다.
     const createPostData = await this.postService.createPost(
@@ -37,8 +39,15 @@ class PostsController {
   };
 
   updatePost = async (req, res, next) => {
+    const { userKey } = res.locals.user;
     const { postId } = req.params;
     const { title, content } = req.body;
+    console.log(postId)
+    const findPost = await this.postService.findPostById(postId)
+
+    if (userKey !== findPost.userKey){
+      return res.status(400).json({errorMessage: "권한이 없습니다."})
+    }
 
     const updatePost = await this.postService.updatePost(
       postId,
@@ -49,17 +58,24 @@ class PostsController {
     res.status(200).json({
       message: "게시글을 수정하였습니다.",
     });
+
+    
+    
   };
 
   deletePost = async (req, res, next) => {
+    const { userKey } = res.locals.user;
     const { postId } = req.params;
-    const { password } = req.body;
+    const findPost = await this.postService.findPostById(postId)
 
-    const deletePost = await this.postService.deletePost(postId, password);
+    if (userKey !== findPost.userKey) {
+      return res.status(400).json({errorMessage: "권한이 없습니다."})
+    }
+    const deletePost = await this.postService.deletePost(postId);
 
-    res.status(200).json({
-      message: "게시글을 삭제하였습니다.",
-    });
+      res.status(200).json({
+        message: "게시글을 삭제하였습니다.",
+      });
   };
 }
 

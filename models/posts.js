@@ -6,7 +6,6 @@ const { Model } = require('sequelize');
  * @param {import("sequelize").DataTypes} DataTypes - Sequelize Column DataTypes
  * @return {Model} - Sequelize Model
  * **/
-
 module.exports = (sequelize, DataTypes) => {
   class Posts extends Model {
     /**

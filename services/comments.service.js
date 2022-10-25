@@ -25,6 +25,7 @@ class CommentService {
     const updateCommentData = await this.commentRepository.updateComment(
       commentId,
       comment
+
     );
     return updateCommentData;
   };

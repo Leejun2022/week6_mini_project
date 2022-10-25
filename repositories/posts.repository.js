@@ -26,18 +26,19 @@ class PostRepository {
     return createPostData;
   };
 
-  updatePost = async (postId, password, title, content) => {
+  updatePost = async (postId, title, content) => {
     const updatePostData = await Posts.update(
       { title, content },
-      { where: { postId, password } }
+      { where: { postId } }
+
     );
 
     return updatePostData;
   };
 
-  deletePost = async (postId, password) => {
-    const updatePostData = await Posts.destroy({ where: { postId, password } });
 
+  deletePost = async (postId) => {
+    const updatePostData = await Posts.destroy({ where: { postId } });
     return updatePostData;
   };
 }
