@@ -30,6 +30,7 @@ class PostRepository {
     const updatePostData = await Posts.update(
       { title, content },
       { where: { postId } }
+
     );
 
     return updatePostData;

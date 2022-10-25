@@ -9,6 +9,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+
+
       userKey: {
         type: Sequelize.INTEGER,
         references: {
@@ -20,10 +22,12 @@ module.exports = {
       },
       commentId: {
         type: Sequelize.INTEGER,
+
         references: {
           model: "Comments",
           key: "CommentId",
         },
+
         allowNull: false,
         onDelete: "cascade",
       },

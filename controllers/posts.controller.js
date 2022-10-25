@@ -19,6 +19,7 @@ class PostsController {
   };
 
   createPost = async (req, res, next) => {
+
     const { nickname, userKey } = res.locals.user;
 
     const { title, content } = req.body;
@@ -47,11 +48,13 @@ class PostsController {
     if (userKey !== findPost.userKey){
       return res.status(400).json({errorMessage: "권한이 없습니다."})
     }
+
     const updatePost = await this.postService.updatePost(
       postId,
       title,
       content
     );
+
     res.status(200).json({
       message: "게시글을 수정하였습니다.",
     });

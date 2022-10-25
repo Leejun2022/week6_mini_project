@@ -12,4 +12,3 @@ router.put('/:postId', authMiddleware, postsController.updatePost);
 router.delete('/:postId', authMiddleware, postsController.deletePost);
 
 module.exports = router;
-
