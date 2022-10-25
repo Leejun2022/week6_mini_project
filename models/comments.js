@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User, {
-        foreignKey: 'userKey',
-        targetKey: 'userKey',
+        foreignKey: "userKey",
+        targetKey: "userKey",
       });
       this.belongsTo(models.Posts, {
-        foreignKey: 'postId',
-        targetKey: 'postId',
+        foreignKey: "postId",
+        targetKey: "postId",
       });
       this.hasMany(models.Recomments, {
-        foreignKey: "commentId",
-        sourceKey: "commentId",
+        foreignKey: 'commentId',
+        sourceKey: 'commentId',
       });
     }
   }

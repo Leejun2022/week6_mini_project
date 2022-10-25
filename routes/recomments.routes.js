@@ -6,6 +6,7 @@ const RecommentController = require("../controllers/recomments.controller");
 const recommentController = new RecommentController();
 
 router.get("/:commentId", recommentController.getRecomment); //해당 게시물 대댓글 전체조회
+
 router.post("/:commentId", authMiddleware, recommentController.createRecomment); //대댓글 생성
 router.put(
   "/:commentId/:recommentId",

@@ -1,7 +1,11 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
+/**
+ * @param {import("sequelize").Sequelize} sequelize - Sequelize
+ * @param {import("sequelize").DataTypes} DataTypes - Sequelize Column DataTypes
+ * @return {Model} - Sequelize Model
+ * **/
 module.exports = (sequelize, DataTypes) => {
   class Posts extends Model {
     /**
@@ -27,13 +31,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       required: true,
+      autoIncrement: true,
     },
-    userKey:{
+    userKey: {
       type: DataTypes.INTEGER,
-        references: {
-          model: "Users",
-          key: "userKey",
-        },
+      references: {
+        model: "Users",
+        key: "userKey",
+      },
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
@@ -46,10 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       required: true,
     },
-    password: {
-      type: DataTypes.STRING,
-      required: true,
-    },
+    // password: {
+    //   type: DataTypes.STRING,
+    //   required: true,
+    // },
   }, {
     sequelize,
     modelName: 'Posts',
