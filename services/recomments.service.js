@@ -10,31 +10,35 @@ class RecommentService {
     return allRecomment;
   };
 
-  createRecomment = async (commentId, comment, nickname) => {
+  createRecomment = async (commentId, recomment, userKey, nickname) => {
     const createRecommentData = await this.recommentservice.createRecomment(
       commentId,
-      comment,
+      recomment,
+      userKey,
       nickname
     );
     return {
-      comment: createRecommentData.comment,
+      recomment: createRecommentData.recomment,
       nickname: createRecommentData.nickname,
       createdAt: createRecommentData.createdAt,
     };
   };
 
-  updateRecomment = async (recommentId, nickname) => {
+  updateRecomment = async (recommentId, recomment, nickname, userKey) => {
     const updateRecommentData = await this.recommentservice.updateRecomment(
       recommentId,
-      nickname
+      recomment,
+      nickname,
+      userKey
     );
     return updateRecommentData;
   };
 
-  deleteRecomment = async (recommentId, nickname) => {
+  deleteRecomment = async (recommentId, nickname, userKey) => {
     const deleteRecommentData = await this.recommentservice.deleteReomment(
       recommentId,
-      nickname
+      nickname,
+      userKey
     );
     return deleteRecommentData;
   };

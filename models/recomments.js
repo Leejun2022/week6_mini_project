@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'commentId',
         targetKey: 'commentId',
       });
+      this.belongsTo(models.Recomments, {
+        foreignKey: "recommentId",
+        targetKey: "recommentId",
+      });
     }
   }
   Recomments.init(
@@ -29,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userKey:{
       type: DataTypes.INTEGER,
+
         references: {
           model: "Users",
           key: "userKey",

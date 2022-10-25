@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require('../middlewares/auth-middleware')
+
 // 나중에 확인하고 미들웨어 추가하기
 
 const RecommentController = require("../controllers/recomments.controller");
