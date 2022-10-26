@@ -2,10 +2,10 @@ require("dotenv").config();
 const env = process.env;
 
 const development = {
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  host: process.env.DB_END_POINT,
+  username: env.DB_USER,
+  password: env.DB_PASSWORD,
+  database: env.DB_NAME,
+  host: env.DB_END_POINT,
   dialect: "mysql",
 };
 

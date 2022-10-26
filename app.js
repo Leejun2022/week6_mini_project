@@ -2,6 +2,7 @@
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+//const bodyParser = require('body-parser')
 const passport = require("passport");
 const passportConfig = require("./passport");
 const cors = require("cors");
@@ -30,6 +31,7 @@ app.use(
   })
 );
 app.use(cookieParser());
+//app.use(bodyParser())
 
 app.use(passport.initialize());
 app.use(passport.session());
