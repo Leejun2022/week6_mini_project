@@ -1,7 +1,13 @@
 "use strict";
 const { Model } = require("sequelize");
+
+/**
+ * @param {import("sequelize").Sequelize} sequelize - Sequelize
+ * @param {import("sequelize").DataTypes} DataTypes - Sequelize Column DataTypes
+ * @return {Model} - Sequelize Model
+ * **/
 module.exports = (sequelize, DataTypes) => {
-  class Comments extends Model {
+  class Images extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -17,28 +23,20 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "postId",
         targetKey: "postId",
       });
-      this.hasMany(models.Recomments, {
-        foreignKey: "commentId",
-        sourceKey: "commentId",
+      this.hasMany(models.Comments, {
+        foreignKey: "postId",
+        sourceKey: "postId",
       });
     }
   }
-  Comments.init(
-    {
-      commentId: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false,
-      },
-      userKey: {
-        type: DataTypes.INTEGER,
 
-        allowNull: false,
-        references: {
-          model: "Users",
-          key: "userKey",
-        },
+  Images.init(
+    {
+      imageId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        required: true,
+        autoIncrement: true,
       },
       postId: {
         type: DataTypes.INTEGER,
@@ -48,13 +46,23 @@ module.exports = (sequelize, DataTypes) => {
           key: "userKey",
         },
       },
-      comment: { type: DataTypes.STRING, unique: true, allowNull: false },
-      nickame: { type: DataTypes.STRING, unique: true, allowNull: false },
+      userKey: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "userKey",
+        },
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        required: true,
+      },
     },
     {
       sequelize,
-      modelName: "Comments",
+      modelName: "Images",
     }
   );
-  return Comments;
+  return Images;
 };

@@ -21,11 +21,11 @@ router.post("/upload", upload.array("file_object"), function (req, res, next) {
   try {
     const base64data = new Buffer(req.files[0].buffer, "binary");
     
-    // const fileName = Math.floor(Math.random() * 100000000).toString();
+    const fileName = Math.floor(Math.random() * 100000000).toString();
     
     const params = {
       Bucket: process.env.AWS_BUCKET_NAME,
-      Key: "filenames.png", // 프론트에서 받아올 수 있지 않을까요??;
+      Key: fileName, // 프론트에서 받아올 수 있지 않을까요??;
       Body: base64data,
       ACL: "public-read",
       ContentType: "image/png",
@@ -37,7 +37,7 @@ router.post("/upload", upload.array("file_object"), function (req, res, next) {
         res.send({ success: false });
       } else {
         console.log("data : ", data);
-        res.send({ success: true, result: data });
+        res.json({ success: true, result: data });
       }
     });
   } catch (ERR) {
@@ -45,7 +45,5 @@ router.post("/upload", upload.array("file_object"), function (req, res, next) {
     res.send({ success: false });
   }
 });
-
-router.delete("/upload");
 
 module.exports = router;

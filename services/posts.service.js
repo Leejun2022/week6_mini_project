@@ -60,6 +60,8 @@ class PostService {
       updatedAt: createPostData.updatedAt,
     };
   };
+
+  
   updatePost = async (postId, title, content) => {
     const findPost = await this.postRepository.findPostById(postId);
     console.log(findPost)
