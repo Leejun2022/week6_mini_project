@@ -4,7 +4,7 @@ const router = express.Router();
 const authRouter = require("./auth");
 const userRouter = require("./users.routes");
 const postsRouter = require("./posts.routes");
-const imagesRouter = require("./image.routes");
+const imagesRouter = require("./images.routes");
 const commentRouter = require("./comments.routes");
 const recommentRouter = require("./recomments.routes");
 

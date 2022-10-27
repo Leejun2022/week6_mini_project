@@ -61,10 +61,9 @@ class PostService {
     };
   };
 
-  
   updatePost = async (postId, title, content) => {
     const findPost = await this.postRepository.findPostById(postId);
-    console.log(findPost)
+    console.log(findPost);
     if (!findPost) throw new Error("Post doesn't exist");
     await this.postRepository.updatePost(postId, title, content);
     const updatePost = await this.postRepository.findPostById(postId);
@@ -91,6 +90,26 @@ class PostService {
       createdAt: findPost.createdAt,
       updatedAt: findPost.updatedAt,
     };
+  };
+
+  // 이미지url을 DB에 저장할 필요가 없어 보입니다.
+  uploadImages = async (imageUrls, userKey, postId) => {
+    const foundData = await this.postRepository.findAllPost(
+      postId,
+      userKey
+    );
+    if (!foundData) {
+      throw new ValidationError("게시글을 찾을 수 없습니다.");
+    }
+
+    const uploadedImages = imageUrls.join();
+
+    const uploadImagesData = await this.postRepository.uploadImages(
+      uploadedImages,
+      userKey,
+      postId
+    );
+    return uploadImagesData;
   };
 }
 

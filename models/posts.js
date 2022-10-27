@@ -56,6 +56,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       required: true,
     },
+    imageUrls:{
+      type:DataTypes.STRING,
+      allowNull: true,
+    },
     // password: {
     //   type: DataTypes.STRING,
     //   required: true,

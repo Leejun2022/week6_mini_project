@@ -30,16 +30,25 @@ class PostRepository {
     const updatePostData = await Posts.update(
       { title, content },
       { where: { postId } }
-
     );
 
     return updatePostData;
   };
 
-
   deletePost = async (postId) => {
     const updatePostData = await Posts.destroy({ where: { postId } });
     return updatePostData;
+  };
+
+  // 이미지url을 DB에 저장할 필요가 없어 보입니다.
+  //이미지 업로드
+  uploadImages = async (uploadedImages, postId) => {
+    const updateImageUrl = await Posts.update(
+      { imageUrls: uploadedImages },
+      { where: { postId } }
+    );
+
+    return updateImageUrl;
   };
 }
 
