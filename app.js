@@ -8,8 +8,8 @@ const cors = require("cors");
 const app = express();
 const port = 4000;
 let corsOptions = {
-  origin: "http://localhost:4000",
-  origin: "http://localhost:3000",
+  origin: "http://3.36.77.73:4000",
+  origin: "http://3.36.77.73:3000",
   credentials: true,
 };
 
