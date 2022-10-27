@@ -10,5 +10,6 @@ router.post("/signup", authLoginMiddleware, usersController.userSignup);
 router.post("/login", authLoginMiddleware, usersController.userLogin);
 router.put("/nickname", authMiddleware, usersController.updatUser);
 router.delete("/deluser", authMiddleware, usersController.deleUser);
+router.get("/me", authMiddleware, usersController.confirmUser);
 
 module.exports = router;

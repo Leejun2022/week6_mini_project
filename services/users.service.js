@@ -38,12 +38,12 @@ class UsersService {
       throw new ValidationError("아이디 또는 패스워드가 틀립니다.");
     }
     const accessToken = jwt.sign(
-      { userKey: user.userKey },
+      { userKey: user.userKey, nickname: user.nickname },
       process.env.SECRET_KEY,
       { expiresIn: "1d" }
     );
     const refreshToken = jwt.sign(
-      { userKey: user.userKey },
+      { userKey: user.userKey, nickname: user.nickname },
       process.env.SECRET_KEY,
       { expiresIn: "21d" }
     );
@@ -75,6 +75,12 @@ class UsersService {
     const updatUser = await this.usersRepository.updatUser(userKey, nickname);
     console.log("44");
     return updatUser;
+  };
+
+  checkUser = async (userKey) => {
+    const existUser = await this.usersRepository.findOneUser(userKey);
+
+    return existUser;
   };
 }
 module.exports = UsersService;

@@ -80,6 +80,25 @@ class UsersController {
       next(error);
     }
   };
+  confirmUser = async (req, res, next) => {
+    try {
+      const { userKey, nickname } = res.locals.user;
+      const { accessToken } = res.locals;
+
+      const existUser = await this.usersService.checkUser(userKey);
+
+      if (existUser.refreshToken === refreshToken) {
+        res.status(200).json({
+          ok: true,
+          msg: "로그인 유저 정보 확인",
+          accessToken,
+          refreshToken: existUser.refreshToken,
+        });
+      }
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 module.exports = UsersController;
